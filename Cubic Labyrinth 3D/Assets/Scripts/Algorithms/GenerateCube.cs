@@ -26,6 +26,7 @@ public class GenerateCube : MonoBehaviour {
 
 		this.GetComponent<CubeAttributes>().modelGrid = new Transform[(int)cube_size.x, (int)cube_size.y, (int)cube_size.z];
 
+
 	}
 	
 	// Update is called once per frame
