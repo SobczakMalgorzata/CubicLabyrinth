@@ -27,9 +27,19 @@ public class GenerateCube : MonoBehaviour {
 
 		this.GetComponent<CubeAttributes>().modelGrid = new Transform[(int)cube_size.x, (int)cube_size.y, (int)cube_size.z];
 
-		//CreateCube.CreateNewCube(cube_size, Prim3D.prim((int)cube_size.x, (int)cube_size.y, (int)cube_size.x), inner_cube);
+		this.GetComponent<CubeAttributes> ().modelGrid = CreateCube.CreateNewCube(cube_size, Prim3D.prim((int)cube_size.x, (int)cube_size.y, (int)cube_size.x), inner_cube);
 
-		Camera.main.transform.position = new Vector3 (cube_size.x * 4, cube_size.y * 4, cube_size.z * 4);
+		//parent setting
+		for (int k = 0; k < cube_size.z; k++) {
+			for (int i = 0; i < cube_size.x; i++) {
+				for (int j = 0; j < cube_size.y; j++){
+					if (this.GetComponent<CubeAttributes> ().modelGrid[k,i,j])
+						this.GetComponent<CubeAttributes> ().modelGrid[k,i,j].parent = transform;
+				}
+			}
+		}
+
+		Camera.main.transform.position = new Vector3 (5, 5, cube_size.z * -3);
 	}
 	
 	// Update is called once per frame

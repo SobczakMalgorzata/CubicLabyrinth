@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CreateCube : MonoBehaviour
 {
+	static Transform[,,] modelGrid;
 	public CreateCube() {
 	}
 
@@ -23,14 +24,16 @@ public class CreateCube : MonoBehaviour
 		}
 	}
 
-	public void CreateNewCube(Vector3 cubeSize, int[,,] cube, Transform CUBE_Prefab) {
+	public static Transform[,,] CreateNewCube(Vector3 cubeSize, int[,,] cube, Transform CUBE_Prefab) {
+		modelGrid = new Transform[(int)cubeSize.x, (int)cubeSize.y, (int)cubeSize.z];
 		for (int k = 0; k < cubeSize.z; k++) {
 				CreateCUBE_level (CUBE_Prefab, cube, cubeSize, k, "CUBE");
 		}
+		return modelGrid;
 	}
 	
 	
-	public void CreateCUBE_level(Transform pref, int[,,] cube, Vector3 cubeSize, int z, string s) {
+	public static void CreateCUBE_level(Transform pref, int[,,] cube, Vector3 cubeSize, int z, string s) {
 		for (int i = 0; i < cubeSize.x; i++) {
 			for (int j = 0; j < cubeSize.y; j++){
 				if(cube[i, j, z] == 1)
@@ -38,9 +41,9 @@ public class CreateCube : MonoBehaviour
 					Transform Level;
 					Level = (Transform)Instantiate (pref, new Vector3(i*2,j*2,z*2), Quaternion.identity);
 					Level.name =  s + string.Format("({0},{1},{2})",i,j,z);
-					Level.parent = transform;
+					//Level.parent = transform;
 					Level.GetComponent<Cell_Script>().Position = new Vector3(i*2,j*2,z*2);
-					this.GetComponent<CubeAttributes> ().modelGrid[i,j,z] = Level;
+					modelGrid[i,j,z] = Level;
 				}
 			}
 		}

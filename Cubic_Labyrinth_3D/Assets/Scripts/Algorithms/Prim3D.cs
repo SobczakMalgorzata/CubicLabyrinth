@@ -5,19 +5,19 @@ using System.Collections;
 
 public class Prim3D {
 
-	int maxRAND = 10;
-	int[,,] cube;
-	bool[, ,] checkedCubes;
-	int[, ,] cubeWeight;
-	CubeBrick[, ,] Grid;
-	List<Vector3> Set;
+	static int maxRAND = 10;
+	static int[,,] cube;
+	static bool[, ,] checkedCubes;
+	static int[, ,] cubeWeight;
+	static CubeBrick[, ,] Grid;
+	static List<Vector3> Set;
 
 	public Prim3D()
 	{
 
 	}
 
-	public int[,,] prim (int x, int y, int z){
+	public static int[,,] prim (int x, int y, int z){
 		Set = new List<Vector3>();
 		cubeSizeGen (x, y, z);
 		cubeGen (x, y, z);
@@ -25,7 +25,7 @@ public class Prim3D {
 		return cube;
 	}
 	
-	void cubeGen (int x, int y, int z)
+	static void cubeGen (int x, int y, int z)
 	{
 		Grid = new CubeBrick[x, y, z];
 		for (int j = 0; j < x; j++)
@@ -40,7 +40,7 @@ public class Prim3D {
 		}
 	}
 	
-	void cubeSizeGen(int x, int y, int z)
+	static void cubeSizeGen(int x, int y, int z)
 	{
 		cubeWeight = new int[x + 1, y + 1, z + 1];
 		cube = new int[x, y, z];
@@ -61,7 +61,7 @@ public class Prim3D {
 	}
 	
 	
-	private void prim(Vector3 s)
+	private static void prim(Vector3 s)
 	{
 		bool t = true;
 		SetStart(s);
@@ -70,7 +70,7 @@ public class Prim3D {
 			t = SetNext(cubeWeight);
 		}
 	}
-	void SetStart(Vector3 s)
+	static void SetStart(Vector3 s)
 	{
 		cube[(int)s.x, (int)s.y, (int)s.z] = 0;
 		checkedCubes[(int)s.x, (int)s.y, (int)s.z] = true;
@@ -80,7 +80,7 @@ public class Prim3D {
 		//}
 		Set.Add(s);
 	}
-	bool SetNext(int[, ,] w)
+	static bool SetNext(int[, ,] w)
 	{
 		Vector3 next;
 		CubeBrick nextB = new CubeBrick();
