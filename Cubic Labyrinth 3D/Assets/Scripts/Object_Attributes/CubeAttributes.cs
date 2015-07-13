@@ -22,8 +22,6 @@ public class CubeAttributes : MonoBehaviour {
 	
 	//Cube reference
 	public Transform[,,] modelGrid;
-	
-	public int maxRAND = 10;
 
 	// Use this for initialization
 	void Start () {

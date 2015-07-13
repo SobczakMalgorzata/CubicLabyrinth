@@ -11,8 +11,9 @@ public class GenerateCube : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Transform Level;
-
+		
 		outer_cube = this.GetComponent<CubeAttributes>().CUBE_Prefab;
+		inner_cube = this.GetComponent<CubeAttributes>().Blue_CUBE_Prefab;
 		my_ball = this.GetComponent<CubeAttributes>().Ball;
 		cube_size = this.GetComponent<CubeAttributes> ().cubeSize;
 
@@ -26,7 +27,9 @@ public class GenerateCube : MonoBehaviour {
 
 		this.GetComponent<CubeAttributes>().modelGrid = new Transform[(int)cube_size.x, (int)cube_size.y, (int)cube_size.z];
 
+		CreateCube.CreateNewCube(cube_size, Prim3D.prim((int)cube_size.x, (int)cube_size.y, (int)cube_size.x), inner_cube);
 
+		Camera.main.transform.position = new Vector3 (cube_size.x * 4, cube_size.y * 4, cube_size.z * 4);
 	}
 	
 	// Update is called once per frame

@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Algorithms\CreateCube.cs" />
      <Compile Include="Assets\Scripts\Algorithms\GenerateCube.cs" />
      <Compile Include="Assets\Scripts\Algorithms\Prim3D.cs" />
      <Compile Include="Assets\Scripts\Classes\CubeBrick.cs" />
